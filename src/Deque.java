@@ -72,7 +72,24 @@ public class Deque<Item> implements Iterable<Item> {
     
     public Iterator<Item> iterator() {
         // TODO Auto-generated method stub
-        return null;
+        return new DequeIterator();
+    }
+    
+    private class DequeIterator implements Iterator<Item> {
+        private Node current=first;
+        public boolean hasNext() {
+            return current!=null;
+        }
+        public void remove() {
+            throw new java.lang.UnsupportedOperationException("remove is not supported");
+        }
+        public Item next() {
+            // TODO Auto-generated method stub
+            if(!hasNext()) throw new java.util.NoSuchElementException("no next");
+            Item item=current.item;
+            current=current.next;
+            return item;
+        }
     }
 
     public static void main(String[] args) {
